@@ -3,8 +3,11 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ReceiveTab from './ReceiveTab';
 import BroadcastTab from './BroadcastTab';
+import { useState } from 'react';
 
 function App() {
+  const [messages, setMessages] = useState([]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,7 +20,7 @@ function App() {
             <Tab>Broadcast</Tab>
           </TabList>
           <TabPanel>
-            <ReceiveTab />
+            <ReceiveTab messages={messages} setMessages={setMessages}/>
           </TabPanel>
           <TabPanel>
             <BroadcastTab />

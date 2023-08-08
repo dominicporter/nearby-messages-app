@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { API_URL } from './constants';
 
-const NearbyMessagesForm = () => {
+const NearbyMessagesForm = ({messages, setMessages}) => {
   const [latitude, setLatitude] = useState('51.5007'); // Parliament Square latitude
   const [longitude, setLongitude] = useState('-0.1246'); // Parliament Square longitude
   const [range, setRange] = useState('10'); // 10 km range
-  const [messages, setMessages] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

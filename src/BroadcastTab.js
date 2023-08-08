@@ -11,9 +11,6 @@ const BroadcastTab = () => {
     e.preventDefault();
     try {
       await axios.post(`${API_URL}/broadcast`, { message, latitude, longitude });
-      // Clear input fields after successful broadcast
-      setLatitude('');
-      setLongitude('');
       setMessage('');
     } catch (error) {
       console.error('Error broadcasting message:', error);

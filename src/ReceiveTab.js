@@ -1,10 +1,11 @@
 import React from 'react';
 import NearbyMessagesForm from './NearbyMessagesForm';
 
-const ReceiveTab = () => {
+const ReceiveTab = ({messages, setMessages}) => {
+
   return (
     <div>
-      <NearbyMessagesForm />
+      <NearbyMessagesForm messages={messages} setMessages={setMessages}/>
     </div>
   );
 };
