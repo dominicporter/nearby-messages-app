@@ -52,13 +52,25 @@ const NearbyMessagesForm = () => {
       <div>
         <h2>Nearby Messages:</h2>
         <ul>
-          {messages.map((message, index) => (
-            <li key={index}>{message.message}</li>
-          ))}
+        {messages.map((message, index) => (
+          <div key={index} style={styles.message}>
+            <p>{new Date(message.timestamp).toLocaleString()}</p>
+            <p>Latitude: {message.latitude} - Longitude: {message.longitude}</p>
+            <p>{message.message}</p>
+          </div>
+        ))}
         </ul>
       </div>
     </div>
   );
 };
+
+const styles = {
+    message: {
+      border: '1px solid #ccc',
+      padding: '10px',
+      marginBottom: '10px',
+    },
+  };
 
 export default NearbyMessagesForm;
