@@ -1,5 +1,8 @@
 import React from 'react';
-import NearbyMessagesForm from './NearbyMessagesForm';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+import ReceiveTab from './ReceiveTab';
+import BroadcastTab from './BroadcastTab';
 
 function App() {
   return (
@@ -8,7 +11,18 @@ function App() {
         <h1>Nearby Messages App</h1>
       </header>
       <main>
-        <NearbyMessagesForm />
+        <Tabs>
+          <TabList>
+            <Tab>Receive</Tab>
+            <Tab>Broadcast</Tab>
+          </TabList>
+          <TabPanel>
+            <ReceiveTab />
+          </TabPanel>
+          <TabPanel>
+            <BroadcastTab />
+          </TabPanel>
+        </Tabs>
       </main>
     </div>
   );

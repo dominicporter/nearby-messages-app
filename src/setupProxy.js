@@ -4,7 +4,14 @@ module.exports = function (app) {
   app.use(
     '/getMessagesNearby',
     createProxyMiddleware({
-      target: 'http://localhost:3001', // Update with your server's URL
+      target: 'http://localhost:3001',
+      changeOrigin: true,
+    })
+  );
+  app.use(
+    '/broadcast',
+    createProxyMiddleware({
+      target: 'http://localhost:3001',
       changeOrigin: true,
     })
   );
