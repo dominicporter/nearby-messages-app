@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const API_URL =
-  process.env.NODE_ENV === 'production'
+  process.env.NODE_ENV === "production"
     ? process.env.REACT_APP_API_URL_PROD
     : process.env.REACT_APP_API_URL_LOCAL;
 
 const NearbyMessagesForm = () => {
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
-  const [range, setRange] = useState('');
+  const [latitude, setLatitude] = useState("51.5007"); // Parliament Square latitude
+  const [longitude, setLongitude] = useState("-0.1246"); // Parliament Square longitude
+  const [range, setRange] = useState("10"); // 10 km range
   const [messages, setMessages] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -20,7 +20,7 @@ const NearbyMessagesForm = () => {
       });
       setMessages(response.data);
     } catch (error) {
-      console.error('Error fetching nearby messages:', error);
+      console.error("Error fetching nearby messages:", error);
     }
   };
 
