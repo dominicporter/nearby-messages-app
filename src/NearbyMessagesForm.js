@@ -9,13 +9,14 @@ const API_URL =
 const NearbyMessagesForm = () => {
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
+  const [range, setRange] = useState('');
   const [messages, setMessages] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.get(`${API_URL}/getMessagesNearby`, {
-        params: { latitude, longitude },
+        params: { latitude, longitude, range },
       });
       setMessages(response.data);
     } catch (error) {
@@ -40,6 +41,14 @@ const NearbyMessagesForm = () => {
             type="text"
             value={longitude}
             onChange={(e) => setLongitude(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Range (km):</label>
+          <input
+            type="text"
+            value={range}
+            onChange={(e) => setRange(e.target.value)}
           />
         </div>
         <button type="submit">Search Nearby Messages</button>

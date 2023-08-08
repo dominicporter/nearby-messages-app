@@ -12,7 +12,7 @@ describe('App Component', () => {
 
   it('displays nearby messages after form submission', async () => {
     render(<App />);
-
+  
     // Mock the API response
     const mockApiResponse = [
       { message: 'Hello, nearby messages!' },
@@ -21,16 +21,17 @@ describe('App Component', () => {
     global.fetch = jest.fn().mockResolvedValue({
       json: jest.fn().mockResolvedValue(mockApiResponse),
     });
-
-    // Fill out and submit the form
+  
+    // Fill out and submit the form, including the range parameter
     userEvent.type(screen.getByLabelText(/Latitude:/), '37.7749');
     userEvent.type(screen.getByLabelText(/Longitude:/), '-122.4194');
+    userEvent.type(screen.getByLabelText(/Range \(km\):/), '5'); // Example range
     userEvent.click(screen.getByRole('button', { name: /Search Nearby Messages/i }));
-
+  
     // Wait for messages to display
     const message1 = await screen.findByText(/Hello, nearby messages!/i);
     const message2 = await screen.findByText(/Testing nearby messages./i);
-
+  
     expect(message1).toBeInTheDocument();
     expect(message2).toBeInTheDocument();
   });
