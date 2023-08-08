@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
 
 const API_URL =
-  process.env.NODE_ENV === "production"
+  process.env.NODE_ENV === 'production'
     ? process.env.REACT_APP_API_URL_PROD
     : process.env.REACT_APP_API_URL_LOCAL;
 
 const NearbyMessagesForm = () => {
-  const [latitude, setLatitude] = useState("51.5007"); // Parliament Square latitude
-  const [longitude, setLongitude] = useState("-0.1246"); // Parliament Square longitude
-  const [range, setRange] = useState("10"); // 10 km range
+  const [latitude, setLatitude] = useState('51.5007'); // Parliament Square latitude
+  const [longitude, setLongitude] = useState('-0.1246'); // Parliament Square longitude
+  const [range, setRange] = useState('10'); // 10 km range
   const [messages, setMessages] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -20,7 +20,7 @@ const NearbyMessagesForm = () => {
       });
       setMessages(response.data);
     } catch (error) {
-      console.error("Error fetching nearby messages:", error);
+      console.error('Error fetching nearby messages:', error);
     }
   };
 
@@ -30,7 +30,7 @@ const NearbyMessagesForm = () => {
         <div>
           <label>Latitude:</label>
           <input
-            type="text"
+            type='text'
             value={latitude}
             onChange={(e) => setLatitude(e.target.value)}
           />
@@ -38,7 +38,7 @@ const NearbyMessagesForm = () => {
         <div>
           <label>Longitude:</label>
           <input
-            type="text"
+            type='text'
             value={longitude}
             onChange={(e) => setLongitude(e.target.value)}
           />
@@ -46,12 +46,12 @@ const NearbyMessagesForm = () => {
         <div>
           <label>Range (km):</label>
           <input
-            type="text"
+            type='text'
             value={range}
             onChange={(e) => setRange(e.target.value)}
           />
         </div>
-        <button type="submit">Search Nearby Messages</button>
+        <button type='submit'>Search Nearby Messages</button>
       </form>
       <div>
         <h2>Nearby Messages:</h2>
