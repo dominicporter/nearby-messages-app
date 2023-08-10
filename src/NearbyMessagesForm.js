@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { API_URL } from './constants';
+import { API_URL } from './config';
+import LocationEntryBox from './LocationEntryBox';
 
-const NearbyMessagesForm = ({messages, setMessages}) => {
+const NearbyMessagesForm = ({ messages, setMessages }) => {
   const [latitude, setLatitude] = useState('51.5007'); // Parliament Square latitude
   const [longitude, setLongitude] = useState('-0.1246'); // Parliament Square longitude
   const [range, setRange] = useState('10'); // 10 km range
@@ -22,42 +23,34 @@ const NearbyMessagesForm = ({messages, setMessages}) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Latitude:</label>
-          <input
-            type='text'
-            value={latitude}
-            onChange={(e) => setLatitude(e.target.value)}
+          <LocationEntryBox
+            latitude={latitude}
+            longitude={longitude}
+            setLatitude={setLatitude}
+            setLongitude={setLongitude}
           />
-        </div>
-        <div>
-          <label>Longitude:</label>
-          <input
-            type='text'
-            value={longitude}
-            onChange={(e) => setLongitude(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Range (km):</label>
-          <input
-            type='text'
-            value={range}
-            onChange={(e) => setRange(e.target.value)}
-          />
-        </div>
-        <button type='submit'>Search Nearby Messages</button>
+          <div>
+            <label>Range (km):</label>
+            <input
+              type='text'
+              value={range}
+              onChange={(e) => setRange(e.target.value)}
+            />
+          </div>
+          <button type='submit'>Search Nearby Messages</button>
       </form>
       <div>
         <h2>Nearby Messages:</h2>
         <ul>
-        {messages.map((message, index) => (
-          <div key={index} style={styles.message}>
-            <p>{new Date(message.timestamp).toLocaleString()}</p>
-            <p>Latitude: {message.latitude} - Longitude: {message.longitude}</p>
-            <p>{message.message}</p>
-          </div>
-        ))}
+          {messages.map((message, index) => (
+            <div key={index} style={styles.message}>
+              <p>{new Date(message.timestamp).toLocaleString()}</p>
+              <p>
+                Latitude: {message.latitude} - Longitude: {message.longitude}
+              </p>
+              <p>{message.message}</p>
+            </div>
+          ))}
         </ul>
       </div>
     </div>
@@ -65,11 +58,11 @@ const NearbyMessagesForm = ({messages, setMessages}) => {
 };
 
 const styles = {
-    message: {
-      border: '1px solid #ccc',
-      padding: '10px',
-      marginBottom: '10px',
-    },
-  };
+  message: {
+    border: '1px solid #ccc',
+    padding: '10px',
+    marginBottom: '10px',
+  },
+};
 
 export default NearbyMessagesForm;
