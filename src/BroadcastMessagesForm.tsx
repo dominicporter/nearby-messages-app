@@ -3,12 +3,12 @@ import axios from 'axios';
 import { API_URL } from './config';
 import LocationEntryBox from './LocationEntryBox';
 
-const BroadcastMessagesForm = ({ messages, setMessages }) => {
-  const [latitude, setLatitude] = useState('51.5007'); // Parliament Square latitude
-  const [longitude, setLongitude] = useState('-0.1246'); // Parliament Square longitude
-  const [message, setMessage] = useState('');
+const BroadcastMessagesForm: React.FC = () => {
+  const [latitude, setLatitude] = useState<string>('51.5007');
+  const [longitude, setLongitude] = useState<string>('-0.1246');
+  const [message, setMessage] = useState<string>('');
 
-  const handleBroadcast = async (e) => {
+  const handleBroadcast = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await axios.post(`${API_URL}/broadcast`, {

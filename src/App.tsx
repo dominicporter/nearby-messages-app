@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import ReceiveTab from './ReceiveTab';
 import BroadcastTab from './BroadcastTab';
-import { useState } from 'react';
+import { Message } from './types';
 
 function App() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className='App'>
+      <header className='App-header'>
         <h1>Nearby Messages App</h1>
       </header>
       <main>
@@ -20,7 +20,7 @@ function App() {
             <Tab>Broadcast</Tab>
           </TabList>
           <TabPanel>
-            <ReceiveTab messages={messages} setMessages={setMessages}/>
+            <ReceiveTab messages={messages} setMessages={setMessages} />
           </TabPanel>
           <TabPanel>
             <BroadcastTab />
